@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/navigation/route_constant.dart';
 import '../contract/splash.dart';
 import '../view/splash.dart';
 
@@ -13,9 +14,13 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    implements SplashControllerContract {
+class _SplashScreenState extends State<SplashScreen>  with SingleTickerProviderStateMixin 
+    implements SplashControllerContract{
   late final SplashViewContract view;
+
+    late final AnimationController controller;
+    @override
+  late final Animation<double> fadeIn;
 
   @override
   void initState() {
@@ -23,20 +28,34 @@ class _SplashScreenState extends State<SplashScreen>
 
     view = SplashView(controller: this);
 
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    );
+    fadeIn = CurvedAnimation(parent: controller, curve: Curves.easeOut);
+    controller.forward();
+  
+
     onAnimationComplete();
   }
 
-  void onAnimationComplete() {}
+  void onAnimationComplete()async {
+   await Future.delayed(Duration(seconds: 5));
+   if(mounted){
+    context.goNamed(AppRoutes.welcomeName);
+   }
 
-  Future<void> showHomeScreen(Login user) async {
-    // await GetIt.I.get<LocalStorage>().openDb(
-    //   user.username ?? "defaultUsername",
-    // );
-    // refreshLocalData();
-    // if (mounted) {
-    //   context.goNamed(RouteConstant.homePage);
-    // }
   }
+
+  // Future<void> showHomeScreen(Login user) async {
+  //   // await GetIt.I.get<LocalStorage>().openDb(
+  //   //   user.username ?? "defaultUsername",
+  //   // );
+  //   // refreshLocalData();
+  //   // if (mounted) {
+  //   //   context.goNamed(RouteConstant.homePage);
+  //   // }
+  // }
 
   void refreshLocalData() {
     // GetIt.I.get<BankCubit>().loadBanksFromDb();
@@ -45,6 +64,13 @@ class _SplashScreenState extends State<SplashScreen>
     // GetIt.I.get<LivestockCubit>().loadLivestocksFromDb();
     // GetIt.I.get<LgaCubit>().loadLgasFromDb();
     // GetIt.I.get<WardCubit>().loadWardsFromDb();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+
+    super.dispose();
   }
 
   @override

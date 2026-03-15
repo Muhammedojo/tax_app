@@ -19,11 +19,13 @@ extension StringExtension on String {
       TextOverflow? textOverflow,
       String? searchTerm = ''}) {
     return SubstringHighlight(
+      textAlign: textAlign ?? TextAlign.left,
       text: translate ? this.tr() : this, // each string needing highlighting
       term: searchTerm,
       caseSensitive: false, // user typed "m4a"
       overflow: textOverflow ?? TextOverflow.visible,
       textStyle: TextStyle(
+        
           fontFamily: 'Nunito',
           fontWeight: fontWeight,
           height: textHeight,
