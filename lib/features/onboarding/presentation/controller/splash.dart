@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   void onAnimationComplete() {}
 
-  Future<void> showHomeScreen(Login user) async {
+  Future<void> showHomeScreen( user) async {
     // await GetIt.I.get<LocalStorage>().openDb(
     //   user.username ?? "defaultUsername",
     // );

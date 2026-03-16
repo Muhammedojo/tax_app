@@ -1,19 +1,19 @@
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 import '../../../config/di/app_initializer.dart';
-import '../../storage/istorage.dart';
 
 class DioClientInterceptor extends Interceptor {
   const DioClientInterceptor();
 
   @override
   void onRequest(
-      RequestOptions options, RequestInterceptorHandler handler) async {
-    var bearerToken =
-        AppInitializer.instanceLocator.get<String>(instanceName: 'accessToken');
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
+    var bearerToken = AppInitializer.instanceLocator.get<String>(
+      instanceName: 'accessToken',
+    );
     if (bearerToken.isEmpty) {
-      final user = await GetIt.I.get<LocalStorage>().getLoggedInUser();
-      bearerToken = user.token ?? "";
+      bearerToken = "";
     }
     if (bearerToken.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $bearerToken';

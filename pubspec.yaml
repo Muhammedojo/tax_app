@@ -22,6 +22,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.2.3
   flutter_bloc: ^9.1.1
+  fpdart: ^1.2.0
   intl: ^0.20.2
   substring_highlight: ^1.0.33
   easy_localization: ^3.0.8
