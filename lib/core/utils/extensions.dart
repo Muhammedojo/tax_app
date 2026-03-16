@@ -28,7 +28,7 @@ extension StringExtension on String {
         
           fontFamily: 'Nunito',
           fontWeight: fontWeight,
-          height: textHeight,
+          height: textHeight.sp,
           decoration: decoration ?? TextDecoration.none,
           fontSize: fontSize.sp,
           fontStyle: fontStyle,

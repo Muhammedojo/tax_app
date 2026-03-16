@@ -5,6 +5,7 @@
 import '../../../../core/utils/contract.dart';
 
 abstract class WelcomeControllerContract {
+  void getStarted() {}
 
 }
 

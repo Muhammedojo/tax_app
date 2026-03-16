@@ -48,7 +48,9 @@ class WelcomeView extends StatelessWidget implements WelcomeViewContract {
             // CTA buttons
             TaxLightButton(
               label: 'Get Started',
-              onPressed: (){},
+              onPressed: (){
+                controller.getStarted();
+              },
             ),
  
             17.verticalSpace,

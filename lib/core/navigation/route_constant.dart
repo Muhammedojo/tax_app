@@ -22,6 +22,9 @@ abstract class AppRoutes {
   static const String onboardingStep1 = '/onboarding/step-1';
   static const String onboardingStep1Name = 'onboarding-step-1';
 
+    static const String onboard = '/onboard';
+  static const String onboardName = 'onboard';
+
   static const String onboardingStep2 = '/onboarding/step-2';
   static const String onboardingStep2Name = 'onboarding-step-2';
 

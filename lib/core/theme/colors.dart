@@ -15,7 +15,7 @@ class AppColors {
   static const Color secondaryText = Color(0xff5F6561);
   static const Color accentText = Color.fromRGBO(114, 114, 114, 1);
   static const Color lightGreen = Color.fromRGBO(214, 241, 223, 1);
-  static const Color primaryGreen = Color.fromRGBO(20, 142, 42, 1);
+  static const Color primaryGreen = Color(0xff077934);
   static const Color secondaryGreen = Color.fromRGBO(33, 131, 88, 1);
   static const Color tertiaryGreen = Color.fromRGBO(25, 59, 45, 1);
   static const Color dark = Color.fromRGBO(26, 33, 30, 1);
@@ -27,8 +27,12 @@ class AppColors {
   static const Color preText = Color.fromRGBO(95, 101, 99, 1);
     static const Color background = Color(0xffF7F9F8);
         static const Color white = Color(0xffFFFFFF);
+                static const Color iconBg = Color(0xffEEF1EF);
+           static const Color border = Color(0xffDEE2E0);
+               
                 static const Color brandColor = Color(0xff5EBB73);
   static const Color primaryRed = Color.fromRGBO(229, 51, 54, 1);
+  
 
 
   static const Color xE8342B =

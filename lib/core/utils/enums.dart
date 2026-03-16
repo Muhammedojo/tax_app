@@ -1,0 +1,1 @@
+enum UserRole { individual, smallBusiness, advisorAccountant, none }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tax_app/features/onboarding/presentation/controller/onboard_controller.dart';
 
 import '../../features/onboarding/presentation/controller/splash.dart';
 import '../../features/onboarding/presentation/controller/welcome_controller.dart';
@@ -31,18 +32,16 @@ final router = GoRouter(
             ),
           ),
         ),
-        // GoRoute(
-        //   path: AppRoutes.onboardingStep1,
-        //   name: AppRoutes.onboardingStep1Name,
-        //   pageBuilder: (context, state) => _buildPage(
-        //     state: state,
-        //     child: OnboardingStep1Screen(
-        //       onContinue: () => context.goNamed(AppRoutes.onboardingStep2Name),
-        //       onSkip: () => context.goNamed(AppRoutes.onboardingStep2Name),
-        //       onThemeToggle: _onToggleTheme,
-        //     ),
-        //   ),
-        // ),
+        GoRoute(
+          path: AppRoutes.onboard,
+          name: AppRoutes.onboardName,
+          pageBuilder: (context, state) => _buildPage(
+            state: state,
+            child: OnboardScreen(
+             
+            ),
+          ),
+        ),
         // GoRoute(
         //   path: AppRoutes.onboardingStep2,
         //   name: AppRoutes.onboardingStep2Name,

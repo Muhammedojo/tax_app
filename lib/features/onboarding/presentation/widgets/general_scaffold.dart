@@ -39,38 +39,44 @@ class TaxLightScaffold extends StatelessWidget {
               left: 0,
               right: 0,
               child: Image.asset('assets/images/powered.png', width: 105.sp,height: 125.sp,)),
-            Column(
-              children: [
-                if (showTopActions)
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 8, right: 16),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: Icon(
-                              Icons.dark_mode_outlined,
-                              color: AppColors.primaryText,
-                              size: 22,
-                            ),
-                            onPressed: onThemeToggle,
+            SafeArea(
+              child: Padding(
+                padding: REdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (showTopActions)
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8,),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: Icon(
+                                  Icons.dark_mode_outlined,
+                                  color: AppColors.primaryText,
+                                  size: 22,
+                                ),
+                                onPressed: onThemeToggle,
+                              ),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.settings_outlined,
+                                  color: AppColors.secondaryText,
+                                  size: 22,
+                                ),
+                                onPressed: onSettings,
+                              ),
+                            ],
                           ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.settings_outlined,
-                              color: AppColors.secondaryText,
-                              size: 22,
-                            ),
-                            onPressed: onSettings,
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                Expanded(child: body),
-              ],
+                    Expanded(child: body),
+                  ],
+                ),
+              ),
             ),
             
           ],
