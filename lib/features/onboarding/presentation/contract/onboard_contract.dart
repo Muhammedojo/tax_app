@@ -10,6 +10,26 @@ abstract class OnboardControllerContract {
 late ValueNotifier<UserRole> selectedRole;
  void onRoleSelected(UserRole role);
 late ValueNotifier<int> currentIndex;
+late List<String> allTopics;
+late ValueNotifier<Set<String>> selectedTopics;
+void addTopic(String topic);
+ late List<String> languages;
+late ValueNotifier<String> selectedLanguage;
+
+ 
+ late ValueNotifier<bool> keyDates;
+   late ValueNotifier<bool>  newCirculars;
+  late ValueNotifier<bool>  monthlySummary;
+
+  void setKeyDates() {}
+
+  void setNewCirculars() {}
+
+  void setMonthlySummary() {}
+
+  void onLanguageSelected(String lang) {}
+
+  void goToOffline() {}
  
 
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tax_app/core/utils/extensions.dart';
 
 import '../../../../core/theme/colors.dart';
 
@@ -15,12 +16,16 @@ class TaxLightScaffold extends StatelessWidget {
     this.showTopActions = false,
     this.onThemeToggle,
     this.onSettings,
+    this.title,
+    this.showLogo = false,
   });
 
   final Widget body;
 
   /// Whether to show the dark-mode toggle and settings icons in the top-right.
   final bool showTopActions;
+  final bool showLogo;
+  final String? title;
   final VoidCallback? onThemeToggle;
   final VoidCallback? onSettings;
 
@@ -45,34 +50,43 @@ class TaxLightScaffold extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (showTopActions)
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 8,),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                icon: Icon(
-                                  Icons.dark_mode_outlined,
-                                  color: AppColors.primaryText,
-                                  size: 22,
-                                ),
-                                onPressed: onThemeToggle,
-                              ),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.settings_outlined,
-                                  color: AppColors.secondaryText,
-                                  size: 22,
-                                ),
-                                onPressed: onSettings,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                   if (showTopActions)
+  Row(
+    children: [
+      if (showLogo)
+        SvgPicture.asset(
+          'assets/vectors/appLogo.svg',
+          fit: BoxFit.contain,
+          width: 47.sp,
+          height: 47.sp,
+        ),
+      if (title != null)
+        Padding(
+          padding:  REdgeInsets.only(left: 16),
+          child: title!.toText(
+            fontWeight: FontWeight.w800,
+            fontSize: 20
+          ),
+        ),
+      const Spacer(), // always pushes icons to the right
+      Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: Icon(Icons.dark_mode_outlined, color: AppColors.primaryText, size: 22),
+              onPressed: onThemeToggle,
+            ),
+            IconButton(
+              icon: Icon(Icons.settings_outlined, color: AppColors.secondaryText, size: 22),
+              onPressed: onSettings,
+            ),
+          ],
+        ),
+      ),
+    ],
+  ),
                     Expanded(child: body),
                   ],
                 ),

@@ -19,11 +19,17 @@ abstract class AppRoutes {
   static const String welcome = '/welcome';
   static const String welcomeName = 'welcome';
 
+  static const String home = '/home';
+  static const String homeName = 'home_name';
+
   static const String onboardingStep1 = '/onboarding/step-1';
   static const String onboardingStep1Name = 'onboarding-step-1';
 
     static const String onboard = '/onboard';
   static const String onboardName = 'onboard';
+
+    static const String offlinePack = '/offline-pack';
+  static const String offlinePackName = 'offline-pack-name';
 
   static const String onboardingStep2 = '/onboarding/step-2';
   static const String onboardingStep2Name = 'onboarding-step-2';

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tax_app/features/home/controllers/home_controller.dart';
+import 'package:tax_app/features/onboarding/presentation/controller/offline_pack_controller.dart';
 import 'package:tax_app/features/onboarding/presentation/controller/onboard_controller.dart';
 
 import '../../features/onboarding/presentation/controller/splash.dart';
@@ -40,6 +42,22 @@ final router = GoRouter(
             child: OnboardScreen(
              
             ),
+          ),
+        ),
+          GoRoute(
+          path: AppRoutes.offlinePack,
+          name: AppRoutes.offlinePackName,
+          pageBuilder: (context, state) => _buildPage(
+            state: state,
+            child: OfflinePackScreen(),
+          ),
+        ),
+         GoRoute(
+          path: AppRoutes.home,
+          name: AppRoutes.homeName,
+          pageBuilder: (context, state) => _buildPage(
+            state: state,
+            child: HomeScreen(),
           ),
         ),
         // GoRoute(
