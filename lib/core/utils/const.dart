@@ -503,3 +503,8 @@ const ERR_SERVER_ERROR =
 const ERR_SERVER_ERR = 'Server';
 const ERR_CLIENT_ERROR = 'Session Expired, Login again'; //'Bad Request Error';
 const KEY_HTTP_LAST_REQUEST_TIME = "HTTP_LAST_REQUEST_TIME";
+
+const String MOBILE = 'MOBILE';
+const String TABLET = 'TABLET';
+const String PHONE = 'PHONE';
+const String DESKTOP = 'DESKTOP';

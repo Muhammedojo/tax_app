@@ -12,10 +12,10 @@ class AppColors {
   static const Color secondaryElement = Color.fromARGB(255, 240, 243, 248);
   static const Color accentElement = Color.fromARGB(255, 74, 74, 74);
   static const Color primaryText = Color.fromARGB(255, 165, 169, 179);
-  static const Color secondaryText = Color.fromARGB(255, 255, 255, 255);
+  static const Color secondaryText = Color(0xff5F6561);
   static const Color accentText = Color.fromRGBO(114, 114, 114, 1);
   static const Color lightGreen = Color.fromRGBO(214, 241, 223, 1);
-  static const Color primaryGreen = Color.fromRGBO(20, 142, 42, 1);
+  static const Color primaryGreen = Color(0xff077934);
   static const Color secondaryGreen = Color.fromRGBO(33, 131, 88, 1);
   static const Color tertiaryGreen = Color.fromRGBO(25, 59, 45, 1);
   static const Color dark = Color.fromRGBO(26, 33, 30, 1);
@@ -25,7 +25,15 @@ class AppColors {
   static const Color subText = Color.fromRGBO(134, 142, 139, 1);
   static const Color whiteGrey = Color.fromRGBO(82, 88, 102, 1);
   static const Color preText = Color.fromRGBO(95, 101, 99, 1);
+    static const Color background = Color(0xffF7F9F8);
+        static const Color white = Color(0xffFFFFFF);
+                static const Color iconBg = Color(0xffEEF1EF);
+           static const Color border = Color(0xffDEE2E0);
+               
+                static const Color brandColor = Color(0xff5EBB73);
   static const Color primaryRed = Color.fromRGBO(229, 51, 54, 1);
+  
+
 
   static const Color xE8342B =
       Color.fromRGBO(232, 52, 43, 1); //rgba(232,52,43, 1)//E8342B, 100%
