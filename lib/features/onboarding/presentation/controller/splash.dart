@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/navigation/route_constant.dart';
 import '../contract/splash.dart';
@@ -61,8 +60,6 @@ class _SplashScreenState extends State<SplashScreen>  with SingleTickerProviderS
     // GetIt.I.get<BankCubit>().loadBanksFromDb();
     // GetIt.I.get<CropCubit>().loadCropsFromDb();
     // GetIt.I.get<CooperativeCubit>().loadCooperativesFromDb();
-    // GetIt.I.get<LivestockCubit>().loadLivestocksFromDb();
-    // GetIt.I.get<LgaCubit>().loadLgasFromDb();
     // GetIt.I.get<WardCubit>().loadWardsFromDb();
   }
 

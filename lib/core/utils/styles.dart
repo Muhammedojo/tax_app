@@ -97,7 +97,7 @@ class Styles {
     color: Colors.white,
   );
 
-  static textFormFieldDecoration(
+  static InputDecoration textFormFieldDecoration(
     String hintText,
     String labelText, {
     IconData? iconData,
@@ -115,7 +115,7 @@ class Styles {
     );
   }
 
-  static textFormFieldDecorationNoBorder(
+  static InputDecoration textFormFieldDecorationNoBorder(
     String hintText,
     String labelText, {
     IconData? iconData,
@@ -148,7 +148,7 @@ class Styles {
     );
   }
 
-  static textFormFieldDecorationBorderWithBackground(
+  static InputDecoration textFormFieldDecorationBorderWithBackground(
     String hintText,
     String labelText, {
     IconData? iconData,
@@ -209,7 +209,7 @@ class Styles {
     );
   }
 
-  static boxDecoration() {
+  static BoxDecoration boxDecoration() {
     return BoxDecoration(
       border: Border.all(width: 0, style: BorderStyle.none),
       color: AppColors.xF3F3F5,
@@ -217,7 +217,7 @@ class Styles {
     );
   }
 
-  static amountFormFieldDecoration(
+  static InputDecoration amountFormFieldDecoration(
     String hintText,
     String labelText, {
     String? validationText,
@@ -245,7 +245,7 @@ class Styles {
     );
   }
 
-  static dropdownFormFieldDecoration(
+  static InputDecoration dropdownFormFieldDecoration(
     String hintText,
     String labelText, {
     String? validationText,
@@ -267,7 +267,7 @@ class Styles {
     );
   }
 
-  static textFormFieldDecorationNoBorderWithBackground(
+  static InputDecoration textFormFieldDecorationNoBorderWithBackground(
     String hintText,
     String labelText, {
     IconData? iconData,
@@ -321,7 +321,7 @@ class Styles {
     );
   }
 
-  static dropdownFormFieldDecorationNoBorderWithBackground(
+  static InputDecoration dropdownFormFieldDecorationNoBorderWithBackground(
     String hintText,
     String labelText, {
     String? validationText,
@@ -346,7 +346,7 @@ class Styles {
     );
   }
 
-  static passwordFieldDecoration(
+  static InputDecoration passwordFieldDecoration(
     String hintText,
     String labelText,
     bool obscurePassword,
@@ -381,7 +381,7 @@ class Styles {
     );
   }
 
-  static csdFieldDecoration(
+  static InputDecoration csdFieldDecoration(
     String hintText,
     String labelText,
     Function onRemoveCsd, {
@@ -407,7 +407,7 @@ class Styles {
     );
   }
 
-  static searchFieldBorderlessDecoration(
+  static InputDecoration searchFieldBorderlessDecoration(
     String hintText,
     String labelText, {
     Color? color,
@@ -439,7 +439,7 @@ class Styles {
     );
   }
 
-  static searchFieldBorderlessDecorationIcon(String hintText, {Color? color}) {
+  static InputDecoration searchFieldBorderlessDecorationIcon(String hintText, {Color? color}) {
     return InputDecoration(
       prefixIcon: Icon(Icons.search, color: color, size: 20.0.sp),
       border: UnderlineInputBorder(
@@ -460,7 +460,7 @@ class Styles {
     );
   }
 
-  static textFormFieldDecorationWithIconAttachment(
+  static InputDecoration textFormFieldDecorationWithIconAttachment(
     String hintText,
     String labelText,
   ) {
@@ -1224,18 +1224,18 @@ class Styles {
     decoration: TextDecoration.underline,
   );
 
-  static ovalShape() {
+  static RoundedRectangleBorder ovalShape() {
     return RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0));
   }
 
-  static ovalDarkDecoration({Color? color, double? radius}) {
+  static BoxDecoration ovalDarkDecoration({Color? color, double? radius}) {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(radius ?? 40.0),
       color: color ?? AppColors.x404040,
     );
   }
 
-  static colorComboDecoration(context) {
+  static BoxDecoration colorComboDecoration(BuildContext context) {
     return BoxDecoration(
       color: isDarkTheme(context) ?AppColors.accentText: AppColors.primaryBackground ,
       gradient: LinearGradient(
@@ -1249,35 +1249,35 @@ class Styles {
     );
   }
 
-  static ovalMarketDecoration({Color? color, double? radius}) {
+  static BoxDecoration ovalMarketDecoration({Color? color, double? radius}) {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(radius ?? 40.0),
       color: color ?? AppColors.xF3F3F5,
     );
   }
 
-  static ovalWhiteDecoration({Color? color, double? radius}) {
+  static BoxDecoration ovalWhiteDecoration({Color? color, double? radius}) {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(radius ?? 40.0),
       color: color ?? AppColors.xFFFFFF,
     );
   }
 
-  static ovalGreenDecoration({Color? color, double? radius}) {
+  static BoxDecoration ovalGreenDecoration({Color? color, double? radius}) {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(radius ?? 40.0),
       color: color ?? AppColors.x008751,
     );
   }
 
-  static ovalBurntGoldDecoration({Color? color, double? radius}) {
+  static BoxDecoration ovalBurntGoldDecoration({Color? color, double? radius}) {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(radius ?? 40.0),
       color: color ?? AppColors.burntGold,
     );
   }
 
-  static ovalBorderedGreenDecoration({
+  static BoxDecoration ovalBorderedGreenDecoration({
     Color? color,
     double? radius,
     double? borderWidth,
@@ -1293,7 +1293,7 @@ class Styles {
     );
   }
 
-  static ovalBorderedTradeDecoration({
+  static BoxDecoration ovalBorderedTradeDecoration({
     Color? color,
     double? radius,
     double? borderWidth,
@@ -1309,7 +1309,7 @@ class Styles {
     );
   }
 
-  static ovalBorderedViewDecoration({
+  static BoxDecoration ovalBorderedViewDecoration({
     Color? color,
     double? radius,
     double? borderWidth,
@@ -1325,7 +1325,7 @@ class Styles {
     );
   }
 
-  static ovalRedDecoration({Color? color, double? radius}) {
+  static BoxDecoration ovalRedDecoration({Color? color, double? radius}) {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(radius ?? 40.0),
       color: color ?? AppColors.xD61A0D,
@@ -1333,7 +1333,7 @@ class Styles {
   }
 
   /// ************************end new design styles*******************************
-  static outlineBorder(
+  static InputDecoration outlineBorder(
     EdgeInsets contentPaddingValues,
     Color borderColor,
     double borderWidth,

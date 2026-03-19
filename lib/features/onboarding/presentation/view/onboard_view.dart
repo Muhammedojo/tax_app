@@ -1,9 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:tax_app/core/navigation/route_constant.dart';
 import 'package:tax_app/core/theme/colors.dart';
 import 'package:tax_app/core/utils/extensions.dart';
 import 'package:tax_app/features/onboarding/presentation/widgets/step_badge.dart';
@@ -14,7 +11,6 @@ import '../widgets/general_scaffold.dart';
 import '../widgets/language_dropdown.dart';
 import '../widgets/role_card.dart';
 import '../widgets/tax_button.dart';
-import '../widgets/tax_logo.dart';
 import '../widgets/topic_chip.dart';
 
 class OnboardView extends StatelessWidget implements OnboardViewContract {
@@ -177,7 +173,7 @@ class Step1 extends StatelessWidget {
           },
         ),
 
-         SizedBox(height: 12.h),
+        SizedBox(height: 12.h),
 
         TaxLightButton(
           label: 'Skip for now',
@@ -230,7 +226,7 @@ class Step3 extends StatelessWidget {
                 );
               }).toList(),
             );
-          }
+          },
         ),
         108.verticalSpace,
         TaxLightButton(
@@ -240,8 +236,7 @@ class Step3 extends StatelessWidget {
           },
         ),
 
-    12.verticalSpace,
-
+        12.verticalSpace,
 
         TaxLightButton(
           label: 'Skip for now',
@@ -266,14 +261,14 @@ class Step4 extends StatelessWidget {
         children: [
           StepBadge(current: 4, total: 5),
           24.verticalSpace,
-      
+
           "Make it easy for you".toText(
             textHeight: 34 / 28,
             fontSize: 28,
             fontWeight: FontWeight.w700,
           ),
           24.verticalSpace,
-      
+
           // Language section
           'Language'.toText(fontSize: 14, fontWeight: FontWeight.w400),
           8.verticalSpace,
@@ -287,13 +282,13 @@ class Step4 extends StatelessWidget {
               );
             },
           ),
-      
+
           24.verticalSpace,
-      
+
           // Reminders section
           'Reminders'.toText(fontSize: 16, fontWeight: FontWeight.w600),
-            8.verticalSpace,
-      
+          8.verticalSpace,
+
           ValueListenableBuilder(
             valueListenable: controller.keyDates,
             builder: (context, value, child) {
@@ -304,9 +299,9 @@ class Step4 extends StatelessWidget {
               );
             },
           ),
-      
+
           10.verticalSpace,
-      
+
           ValueListenableBuilder(
             valueListenable: controller.newCirculars,
             builder: (context, value, child) {
@@ -317,9 +312,9 @@ class Step4 extends StatelessWidget {
               );
             },
           ),
-      
+
           10.verticalSpace,
-      
+
           ValueListenableBuilder(
             valueListenable: controller.monthlySummary,
             builder: (context, value, child) {
@@ -330,9 +325,9 @@ class Step4 extends StatelessWidget {
               );
             },
           ),
-      
+
           12.verticalSpace,
-      
+
           // Disclaimer note
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -351,21 +346,19 @@ class Step4 extends StatelessWidget {
           ),
 
           17.verticalSpace,
-      
+
           TaxLightButton(
             label: 'Continue',
             onPressed: () {
               controller.currentIndex.value = 5;
             },
           ),
-      
+
           12.verticalSpace,
-      
+
           TaxLightButton(
             label: 'Skip for now',
-            onPressed: () {
-             
-            },
+            onPressed: () {},
             variant: TaxLightButtonVariant.ghost,
           ),
         ],
@@ -390,11 +383,8 @@ class Step5 extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-           'protect'.toSvg(
-                  width: 44.2.sp,
-                  height: 48.sp,
-                ),
-           12.horizontalSpace,
+            'protect'.toSvg(width: 44.2.sp, height: 48.sp),
+            12.horizontalSpace,
             Expanded(
               child: 'Your data, kept minimal'.toText(
                 fontSize: 28,
@@ -404,16 +394,16 @@ class Step5 extends StatelessWidget {
           ],
         ),
 
-       24.verticalSpace,
+        24.verticalSpace,
 
-        'We store your role and topics so we can personalise your summaries.'
+        'We store your role and topics so we can personalize your summaries.'
             .toText(
               color: AppColors.secondaryText,
               fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
 
-    12.verticalSpace,
+        12.verticalSpace,
 
         'You can turn off reminders anytime.'.toText(
           color: AppColors.secondaryText,
@@ -421,7 +411,7 @@ class Step5 extends StatelessWidget {
           fontWeight: FontWeight.w400,
         ),
 
-       20.verticalSpace,
+        20.verticalSpace,
 
         // Privacy Policy + Terms links
         RichText(
@@ -437,7 +427,7 @@ class Step5 extends StatelessWidget {
                   decoration: TextDecoration.underline,
                   decorationColor: AppColors.primaryGreen,
                 ),
-                recognizer: TapGestureRecognizer()..onTap = (){},
+                recognizer: TapGestureRecognizer()..onTap = () {},
               ),
               WidgetSpan(
                 child: Icon(
@@ -452,12 +442,12 @@ class Step5 extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                        fontFamily: 'Nunito',
+                  fontFamily: 'Nunito',
                   color: AppColors.primaryGreen,
                   decoration: TextDecoration.underline,
                   decorationColor: AppColors.primaryGreen,
                 ),
-                recognizer: TapGestureRecognizer()..onTap = (){},
+                recognizer: TapGestureRecognizer()..onTap = () {},
               ),
               WidgetSpan(
                 child: Icon(

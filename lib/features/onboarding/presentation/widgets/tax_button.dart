@@ -57,12 +57,12 @@ class _PrimaryButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(32),
         boxShadow: [
           BoxShadow(
-            color: AppColors.brandColor.withOpacity(0.35),
+            color: AppColors.brandColor.withAlpha((0.35 * 225).toInt()),
             blurRadius: 12,
             offset: const Offset(0, 6),
           ),
           BoxShadow(
-            color: AppColors.brandColor.withOpacity(0.15),
+            color: AppColors.brandColor.withAlpha((0.15 * 225).toInt()),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -73,7 +73,7 @@ class _PrimaryButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.brandColor,
           foregroundColor: AppColors.white,
-          disabledBackgroundColor: AppColors.primaryGreen.withOpacity(0.5),
+          disabledBackgroundColor: AppColors.primaryGreen.withAlpha((0.5 * 225).toInt()),
           elevation: 10, // shadow handled by BoxDecoration
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32),
@@ -111,7 +111,7 @@ class _GhostButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(32),
         ),
         minimumSize: const Size(double.infinity, 54),
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding:  REdgeInsets.symmetric(horizontal: 24),
       ),
       child: label.toText(
         color: AppColors.primaryGreen,

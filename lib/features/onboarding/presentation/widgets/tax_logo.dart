@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tax_app/core/utils/extensions.dart';
-import 'package:tax_app/core/utils/styles.dart';
-
 import '../../../../core/theme/colors.dart';
 
 

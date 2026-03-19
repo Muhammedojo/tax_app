@@ -4,7 +4,11 @@ import 'package:tax_app/core/navigation/navigator.dart';
 import 'package:tax_app/core/theme/colors.dart';
 import 'package:tax_app/core/utils/extensions.dart';
 import '../../onboarding/presentation/widgets/general_scaffold.dart';
+import '../../ask/presentation/controller/ask_controller.dart';
+import '../../calculator/presentation/controller/calculator_controller.dart';
+import '../../law/presentation/controller/law_controller.dart';
 import '../../update/presentation/controller/update.dart';
+import '../../onboarding/presentation/controller/settings_controller.dart';
 import '../contract/home_contract.dart';
 
 class HomeView extends StatelessWidget implements HomeViewContract {
@@ -18,6 +22,7 @@ class HomeView extends StatelessWidget implements HomeViewContract {
       showTopActions: true,
       title: 'Home',
       showLogo: true,
+      onSettings: () => pushTo(const SettingsScreen(), context),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -48,7 +53,7 @@ class HomeView extends StatelessWidget implements HomeViewContract {
           ),
           16.verticalSpace,
           GestureDetector(
-            onTap: () {},
+            onTap: () => pushTo(const CalculatorScreen(), context),
             child: actionCards(
               'Tax Calculator',
               'Calculate your take-home salary: Today vs New rule.',
@@ -57,7 +62,7 @@ class HomeView extends StatelessWidget implements HomeViewContract {
           ),
           16.verticalSpace,
           GestureDetector(
-            onTap: () {},
+            onTap: () => pushTo(const LawScreen(), context),
             child: actionCards(
               'Tax Laws',
               'Search and read official tax laws offline.',
@@ -66,7 +71,7 @@ class HomeView extends StatelessWidget implements HomeViewContract {
           ),
           16.verticalSpace,
           GestureDetector(
-            onTap: () {},
+            onTap: () => pushTo(const AskScreen(), context),
             child: actionCards(
               'Ask Me',
               'Get answers to your tax questions with sources.',

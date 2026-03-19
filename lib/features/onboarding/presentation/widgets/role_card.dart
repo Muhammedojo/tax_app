@@ -36,18 +36,18 @@ class RoleCard extends StatelessWidget {
               : AppColors.white,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: isSelected
-                ? AppColors.primaryGreen
-                : AppColors.border,
+            color: isSelected ? AppColors.primaryGreen : AppColors.border,
             width: isSelected ? 2.sp : 1.2.sp,
           ),
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: AppColors.primaryGreen.withOpacity(0.08),
+                    color: AppColors.primaryGreen.withAlpha(
+                      (0.08 * 225).toInt(),
+                    ),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
-                  )
+                  ),
                 ]
               : [],
         ),
@@ -57,26 +57,27 @@ class RoleCard extends StatelessWidget {
               width: 40.sp,
               height: 40.sp,
               decoration: BoxDecoration(
-                color: isSelected
-                    ? AppColors.primaryGreen
-                    : AppColors.iconBg,
+                color: isSelected ? AppColors.primaryGreen : AppColors.iconBg,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Center(child: SvgPicture.asset(icon,width: 24.sp, height: 24.sp,color: isSelected ? AppColors.white : Colors.black,))
+              child: Center(
+                child: SvgPicture.asset(
+                  icon,
+                  width: 24.sp,
+                  height: 24.sp,
+                  // ignore: deprecated_member_use
+                  color: isSelected ? AppColors.white : Colors.black,
+                ),
+              ),
             ),
             const SizedBox(width: 14),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 title.toText(
-                  fontSize: 16,
-                 ),
+                  title.toText(fontSize: 16),
                   const SizedBox(height: 2),
-                 subtitle.toText(
-                  color: AppColors.secondaryText,
-                  fontSize: 12
-                 )
+                  subtitle.toText(color: AppColors.secondaryText, fontSize: 12),
                 ],
               ),
             ),
@@ -86,4 +87,3 @@ class RoleCard extends StatelessWidget {
     );
   }
 }
-

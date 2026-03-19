@@ -1,9 +1,7 @@
-import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tax_app/core/navigation/route_constant.dart';
-
 import '../contract/welcome_contract.dart';
 import '../view/welcome_view.dart';
 

@@ -15,6 +15,8 @@ class TaxLightScaffold extends StatelessWidget {
     this.showTopActions = false,
     this.onThemeToggle,
     this.onSettings,
+    this.customTitle,
+     this.widgetTitle,
     this.title,
     this.showLogo = false,
   });
@@ -25,6 +27,8 @@ class TaxLightScaffold extends StatelessWidget {
   final bool showTopActions;
   final bool showLogo;
   final String? title;
+  final Widget? widgetTitle;
+  final bool? customTitle;
   final VoidCallback? onThemeToggle;
   final VoidCallback? onSettings;
 
@@ -104,12 +108,17 @@ class TaxLightScaffold extends StatelessWidget {
                           )
                         : Row(
                             children: [
-                              Icon(Icons.arrow_back),
-                              8.horizontalSpace,
-                              (title ?? '').toText(
-                                fontWeight: FontWeight.w800,
-                                fontSize: 20,
+                              InkWell(
+                                onTap: () => Navigator.pop(context),
+                                child: Icon(Icons.arrow_back),
                               ),
+                              8.horizontalSpace,
+                              customTitle == true
+                                  ? widgetTitle!
+                                  : (title ?? '').toText(
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 20,
+                                    ),
                               const Spacer(),
                               IconButton(
                                 icon: Icon(

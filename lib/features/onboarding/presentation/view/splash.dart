@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import '../contract/splash.dart';
 import '../widgets/general_scaffold.dart';
 import '../widgets/tax_logo.dart';

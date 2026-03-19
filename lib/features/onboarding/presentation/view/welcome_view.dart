@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tax_app/core/utils/extensions.dart';
-
+import '../../../../core/utils/extensions.dart';
 import '../../../../core/theme/colors.dart';
 import '../contract/welcome_contract.dart';
 import '../widgets/general_scaffold.dart';
 import '../widgets/tax_button.dart';
-import '../widgets/tax_logo.dart';
 
 class WelcomeView extends StatelessWidget implements WelcomeViewContract {
   const WelcomeView({super.key, required this.controller});
