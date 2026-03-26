@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tax_app/config/di/app_initializer.dart';
 import 'package:tax_app/tax_app.dart';
 
-void main() {
+void main() async {
+  await AppInitializer.initGetIt();
   runApp(const MyApp());
 }
 

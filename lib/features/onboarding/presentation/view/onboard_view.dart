@@ -1,10 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tax_app/core/theme/colors.dart';
 import 'package:tax_app/core/utils/extensions.dart';
 import 'package:tax_app/features/onboarding/presentation/widgets/step_badge.dart';
-import '../../../../core/utils/enums.dart';
+import '../bloc/role/role_cubit.dart';
+import '../bloc/topic/topic_cubit.dart';
 import '../contract/onboard_contract.dart';
 import '../widgets/feature_widget.dart';
 import '../widgets/general_scaffold.dart';
@@ -57,8 +59,8 @@ class Step2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: controller.selectedRole,
-      builder: (context, value, child) {
+      valueListenable: controller.selectedRoleId,
+      builder: (context, selectedId, child) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -70,46 +72,44 @@ class Step2 extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
             24.verticalSpace,
-            // Role cards
-            RoleCard(
-              icon: 'assets/vectors/person.svg',
-              title: 'Individual',
-              subtitle: 'Personal tax matters and obligations',
-              isSelected: value == UserRole.individual,
-              onTap: () => controller.onRoleSelected(UserRole.individual),
-            ),
-
-            const SizedBox(height: 12),
-
-            RoleCard(
-              icon: 'assets/vectors/business.svg',
-              title: 'Small Business',
-              subtitle: 'SME tax compliance and planning',
-              isSelected: value == UserRole.smallBusiness,
-              onTap: () => controller.onRoleSelected(UserRole.smallBusiness),
-            ),
-
-            const SizedBox(height: 12),
-
-            RoleCard(
-              icon: 'assets/vectors/advisor.svg',
-              title: 'Advisor/Accountant',
-              subtitle: 'Supporting multiple clients',
-              isSelected: value == UserRole.advisorAccountant,
-              onTap: () =>
-                  controller.onRoleSelected(UserRole.advisorAccountant),
+            BlocBuilder<RoleCubit, RoleState>(
+              builder: (context, state) {
+                if (state is RoleLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (state is RoleFailure) {
+                  return Center(child: state.error.toText());
+                }
+                if (state is RoleLoaded) {
+                  return Column(
+                    children: state.roleList.asMap().entries.map((entry) {
+                      final role = entry.value;
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          bottom: entry.key < state.roleList.length - 1 ? 12 : 0,
+                        ),
+                        child: RoleCard(
+                          icon: 'assets/vectors/person.svg',
+                          title: role.label ?? '',
+                          subtitle: '',
+                          isSelected: selectedId == role.id,
+                          onTap: () => controller.onRoleSelected(role.id ?? ''),
+                        ),
+                      );
+                    }).toList(),
+                  );
+                }
+                return const SizedBox();
+              },
             ),
             46.verticalSpace,
-
             TaxLightButton(
               label: 'Continue',
               onPressed: () {
                 controller.currentIndex.value = 3;
               },
             ),
-
             const SizedBox(height: 12),
-
             TaxLightButton(
               label: 'Skip for now',
               onPressed: () {},
@@ -212,20 +212,35 @@ class Step3 extends StatelessWidget {
         ),
         24.verticalSpace,
 
-        ValueListenableBuilder(
-          valueListenable: controller.selectedTopics,
-          builder: (context, value, child) {
-            return Wrap(
-              spacing: 10.sp,
-              runSpacing: 10.sp,
-              children: controller.allTopics.map((topic) {
-                return TopicChip(
-                  label: topic,
-                  isSelected: value.contains(topic),
-                  onTap: () => controller.addTopic(topic),
-                );
-              }).toList(),
-            );
+        BlocBuilder<TopicCubit, TopicState>(
+          builder: (context, state) {
+            if (state is TopicLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (state is TopicFailure) {
+              return Center(child: state.error.toText());
+            }
+            if (state is TopicLoaded) {
+              debugPrint('Not here at all');
+              return ValueListenableBuilder(
+                valueListenable: controller.selectedTopics,
+                builder: (context, selected, child) {
+                  return Wrap(
+                    spacing: 10.sp,
+                    runSpacing: 10.sp,
+                    children: state.topicList.map((topic) {
+                      final label = topic.label ?? '';
+                      return TopicChip(
+                        label: label,
+                        isSelected: selected.contains(label),
+                        onTap: () => controller.addTopic(label),
+                      );
+                    }).toList(),
+                  );
+                },
+              );
+            }
+            return const SizedBox();
           },
         ),
         108.verticalSpace,

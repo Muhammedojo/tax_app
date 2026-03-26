@@ -1,16 +1,14 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:tax_app/core/utils/enums.dart';
 
 import '../../../../core/utils/contract.dart';
 
 abstract class OnboardControllerContract {
 
-late ValueNotifier<UserRole> selectedRole;
- void onRoleSelected(UserRole role);
+late ValueNotifier<String?> selectedRoleId;
+ void onRoleSelected(String roleId);
 late ValueNotifier<int> currentIndex;
-late List<String> allTopics;
 late ValueNotifier<Set<String>> selectedTopics;
 void addTopic(String topic);
  late List<String> languages;

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import '../../../config/di/app_initializer.dart';
 
-// class DioClientInterceptor extends Interceptor {
-//   const DioClientInterceptor();
+class DioClientInterceptor extends Interceptor {
+  const DioClientInterceptor();
 
   @override
   void onRequest(
@@ -21,13 +21,13 @@ import '../../../config/di/app_initializer.dart';
     handler.next(options);
   }
 
-//   @override
-//   void onError(DioException err, ErrorInterceptorHandler handler) {
-//     handler.next(err);
-//   }
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    handler.next(err);
+  }
 
-//   @override
-//   void onResponse(Response response, ResponseInterceptorHandler handler) {
-//     handler.next(response);
-//   }
-// }
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    handler.next(response);
+  }
+}

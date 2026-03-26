@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/api/repository/repository_contract.dart';
+import '../../../update/presentation/bloc/update/update_cubit.dart';
 import '../contract/update.dart';
 import '../view/update.dart';
 

@@ -1,5 +1,4 @@
-part of 'bank_cubit.dart';
-
+part of 'role_cubit.dart';
 
 sealed class RoleState extends Equatable {
   const RoleState();
@@ -10,10 +9,10 @@ sealed class RoleState extends Equatable {
 
 class RoleLoading extends RoleState {}
 
-class BankLoaded extends RoleState {
-  final List<Roles> bankList;
+class RoleLoaded extends RoleState {
+  final List<Role> roleList;
 
-  const RoleLoaded(this.bankList);
+  const RoleLoaded(this.roleList);
 
   @override
   List<Object> get props => [roleList];
