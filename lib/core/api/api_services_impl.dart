@@ -93,7 +93,7 @@ class ApiServiceImpl implements ApiService {
     return apiClient.request<OfflinePack>(
       endpoint ?? offlinePackEndpoint,
       MethodType.get,
-      (data, {String? realUri}) => OfflinePack.fromJson(data['data']),
+      (data, {String? realUri}) => OfflinePack.fromJson(data),
       null,
     );
   }

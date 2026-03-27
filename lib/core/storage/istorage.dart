@@ -5,6 +5,10 @@ abstract class DatabaseStorage {}
 
 
 abstract class CacheStorage {
-   Future<void> setThemeSetting(String theme);
+  Future<void> setThemeSetting(String theme);
   Future<String?> getThemeSetting();
+
+  Future<void> saveOfflinePack(String json);
+  Future<String?> getOfflinePack();
+  Future<bool> hasOfflinePack();
 }

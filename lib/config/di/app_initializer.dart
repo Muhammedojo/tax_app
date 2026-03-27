@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/api/api_services.dart';
 import '../../core/api/api_services_impl.dart';
 import '../../core/api/network/network_info.dart';
@@ -12,6 +13,8 @@ import '../../core/api/repository/repository.dart';
 import '../../core/api/repository/repository_contract.dart';
 import '../../core/api/services/contracts/api_client.dart';
 import '../../core/api/services/dio_client.dart';
+import '../../core/storage/istorage.dart';
+import '../../core/storage/shared_prefs_storage.dart';
 import '../../features/law/presentation/bloc/laws/laws_cubit.dart';
 import '../../features/onboarding/presentation/bloc/language/language_cubit.dart';
 import '../../features/onboarding/presentation/bloc/offline_pack/offline_pack_cubit.dart';
@@ -35,8 +38,14 @@ class AppInitializer {
     await ScreenUtil.ensureScreenSize();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     await EasyLocalization.ensureInitialized();
+    await initStorage();
 
     initializeDi();
+  }
+
+  static Future<void> initStorage() async {
+    final prefs = await SharedPreferences.getInstance();
+    instanceLocator.registerSingleton<LocalStorage>(SharedPrefsStorage(prefs));
   }
 
     static dynamic initGetIt() async {
@@ -86,7 +95,10 @@ class AppInitializer {
       () => UpdateCubit(repository: instanceLocator()),
     );
     instanceLocator.registerLazySingleton<OfflinePackCubit>(
-      () => OfflinePackCubit(repository: instanceLocator()),
+      () => OfflinePackCubit(
+        repository: instanceLocator(),
+        storage: instanceLocator(),
+      ),
     );
     instanceLocator.registerLazySingleton<LanguageCubit>(
       () => LanguageCubit(repository: instanceLocator()),

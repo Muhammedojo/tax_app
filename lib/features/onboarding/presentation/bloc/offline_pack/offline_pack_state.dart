@@ -21,6 +21,8 @@ class OfflinePackLoaded extends OfflinePackState {
   String toString() => 'OfflinePackLoaded { OfflinePack: $offlinePack }';
 }
 
+class OfflinePackInitial extends OfflinePackState {}
+
 class OfflinePackNotLoaded extends OfflinePackState {}
 
 class OfflinePackFailure extends OfflinePackState {

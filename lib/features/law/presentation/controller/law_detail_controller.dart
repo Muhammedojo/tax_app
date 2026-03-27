@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:tax_app/core/data/model/offline_pack.dart';
 import '../contract/law_detail_contract.dart';
 import '../view/law_detail_view.dart';
 
 class LawDetailScreen extends StatefulWidget {
-  final LawSection section;
+  final LawRegistry registry;
+  final List<LawEntry> entries;
 
-  const LawDetailScreen({super.key, required this.section});
+  const LawDetailScreen({
+    super.key,
+    required this.registry,
+    required this.entries,
+  });
 
   @override
   State<LawDetailScreen> createState() => _LawDetailScreenState();
@@ -18,7 +24,11 @@ class _LawDetailScreenState extends State<LawDetailScreen>
   @override
   void initState() {
     super.initState();
-    view = LawDetailView(controller: this, section: widget.section);
+    view = LawDetailView(
+      controller: this,
+      registry: widget.registry,
+      entries: widget.entries,
+    );
   }
 
   @override
