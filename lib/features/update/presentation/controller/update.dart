@@ -20,8 +20,8 @@ class _UpdateScreenState extends State<UpdateScreen>
   @override
   void initState() {
     super.initState();
-
     view = UpdateView(controller: this);
+    context.read<UpdateCubit>().loadUpdatesFromServer();
   }
 
   @override

@@ -1,56 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tax_app/core/data/model/update.dart';
 import 'package:tax_app/core/theme/colors.dart';
 import 'package:tax_app/core/utils/extensions.dart';
 import '../../../onboarding/presentation/widgets/general_scaffold.dart';
+import '../bloc/update/update_cubit.dart';
 import '../contract/update.dart';
-
-class _TaxUpdate {
-  final String tag;
-  final Color tagColor;
-  final String date;
-  final String title;
-  final String whatChanged;
-  final String whatItMeans;
-  final String whatToDo;
-
-  const _TaxUpdate({
-    required this.tag,
-    required this.tagColor,
-    required this.date,
-    required this.title,
-    required this.whatChanged,
-    required this.whatItMeans,
-    required this.whatToDo,
-  });
-}
-
-const _updates = [
-  _TaxUpdate(
-    tag: 'VAT',
-    tagColor: AppColors.orange,
-    date: '10 Dec 2025',
-    title: 'VAT on Essential Items',
-    whatChanged:
-        'VAT removed from food items, education, healthcare, rent, and electricity (reported changes awaiting official confirmation).',
-    whatItMeans:
-        'Your grocery bills, school fees, hospital bills, and rent may not include 7.5% VAT anymore—saving you money on essentials.',
-    whatToDo:
-        "Ask sellers if they've removed VAT from these items. Keep receipts. If charged VAT incorrectly, report to FIRS.",
-  ),
-  _TaxUpdate(
-    tag: 'PAYE',
-    tagColor: AppColors.orange,
-    date: '15 Dec 2025',
-    title: 'PAYE Tax Threshold Increase',
-    whatChanged:
-        'The minimum taxable income threshold has been raised, reducing the tax burden on lower-income earners.',
-    whatItMeans:
-        'If you earn below the new threshold, you may pay less income tax or none at all, increasing your take-home pay.',
-    whatToDo:
-        'Review your payslip to confirm updated PAYE deductions. Contact your HR department if deductions seem incorrect.',
-  ),
-];
 
 class UpdateView extends StatelessWidget implements UpdateViewContract {
   const UpdateView({super.key, required this.controller});
@@ -63,18 +19,27 @@ class UpdateView extends StatelessWidget implements UpdateViewContract {
       showTopActions: false,
       title: 'Updates',
       showLogo: false,
-      body: ListView(
-        padding: EdgeInsets.only(top: 20.h, bottom: 32.h),
-        children: [
-          const _BannerCard(),
-          20.verticalSpace,
-          ..._updates.map(
-            (u) => Padding(
-              padding: EdgeInsets.only(bottom: 16.h),
-              child: _UpdateCard(update: u),
+      body: BlocBuilder<UpdateCubit, UpdateState>(
+        builder: (context, state) {
+          return switch (state) {
+            UpdateLoading() => const Center(child: CircularProgressIndicator()),
+            UpdateLoaded(:final updateList) => ListView(
+              padding: EdgeInsets.only(top: 20.h, bottom: 32.h),
+              children: [
+                const _BannerCard(),
+                20.verticalSpace,
+                ...updateList.map(
+                  (u) => Padding(
+                    padding: EdgeInsets.only(bottom: 16.h),
+                    child: _UpdateCard(update: u),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
+            UpdateFailure(:final error) => Center(child: Text(error)),
+            _ => const SizedBox.shrink(),
+          };
+        },
       ),
     );
   }
@@ -114,7 +79,7 @@ class _BannerCard extends StatelessWidget {
 class _UpdateCard extends StatelessWidget {
   const _UpdateCard({required this.update});
 
-  final _TaxUpdate update;
+  final Update update;
 
   @override
   Widget build(BuildContext context) {
@@ -140,10 +105,10 @@ class _UpdateCard extends StatelessWidget {
               Container(
                 padding: REdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
-                  color: update.tagColor,
+                  color: AppColors.orange,
                   borderRadius: BorderRadius.circular(6.r),
                 ),
-                child: update.tag.toText(
+                child: (update.topic ?? '').toText(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                   color: AppColors.white,
@@ -151,7 +116,7 @@ class _UpdateCard extends StatelessWidget {
                 ),
               ),
               12.horizontalSpace,
-              update.date.toText(
+              (update.publishedAt ?? '').toText(
                 fontSize: 13,
                 color: AppColors.secondaryText,
                 translate: false,
@@ -159,29 +124,30 @@ class _UpdateCard extends StatelessWidget {
             ],
           ),
           12.verticalSpace,
-          update.title.toText(
+          (update.title ?? '').toText(
             fontSize: 18,
             fontWeight: FontWeight.w700,
             translate: false,
           ),
           16.verticalSpace,
           _InfoRow(
-            icon: Icons.description_outlined,
-            label: 'What changed',
-            body: update.whatChanged,
-          ),
-          12.verticalSpace,
-          _InfoRow(
             icon: Icons.info_outlined,
             label: 'What it means',
-            body: update.whatItMeans,
+            body: update.summary ?? '',
           ),
+
           12.verticalSpace,
           _InfoRow(
-            icon: Icons.check_circle_outline,
-            label: 'What to do',
-            body: update.whatToDo,
+            icon: Icons.description_outlined,
+            label: 'status',
+            body: update.status ?? '',
           ),
+          // 12.verticalSpace,
+          // _InfoRow(
+          //   icon: Icons.check_circle_outline,
+          //   label: 'What to do',
+          //   body: update.whatToDo,
+          // ),
           20.verticalSpace,
           Row(
             children: [
@@ -197,11 +163,7 @@ class _UpdateCard extends StatelessWidget {
 }
 
 class _InfoRow extends StatelessWidget {
-  const _InfoRow({
-    required this.icon,
-    required this.label,
-    required this.body,
-  });
+  const _InfoRow({required this.icon, required this.label, required this.body});
 
   final IconData icon;
   final String label;
@@ -244,9 +206,7 @@ class _OutlineButton extends StatelessWidget {
       onPressed: () {},
       style: OutlinedButton.styleFrom(
         side: const BorderSide(color: AppColors.border),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.r),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
         padding: REdgeInsets.symmetric(vertical: 12),
       ),
       child: label.toText(
