@@ -17,6 +17,7 @@ class TaxLightScaffold extends StatelessWidget {
     this.onSettings,
     this.customTitle,
      this.widgetTitle,
+     this.noHeader = false,
     this.title,
     this.showLogo = false,
   });
@@ -26,6 +27,7 @@ class TaxLightScaffold extends StatelessWidget {
   /// Whether to show the dark-mode toggle and settings icons in the top-right.
   final bool showTopActions;
   final bool showLogo;
+  final bool noHeader;
   final String? title;
   final Widget? widgetTitle;
   final bool? customTitle;
@@ -80,8 +82,9 @@ class TaxLightScaffold extends StatelessWidget {
                                   ),
                                 ),
                               const Spacer(), // always pushes icons to the right
+                              noHeader ? SizedBox() :
                               Padding(
-                                padding: const EdgeInsets.only(top: 8),
+                                padding:  REdgeInsets.only(top: 8),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [

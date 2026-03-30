@@ -109,10 +109,10 @@ class Step2 extends StatelessWidget {
                 controller.currentIndex.value = 3;
               },
             ),
-            const SizedBox(height: 12),
+             SizedBox(height: 12.h),
             TaxLightButton(
               label: 'Skip for now',
-              onPressed: () {},
+              onPressed: () => controller.currentIndex.value = 3,
               variant: TaxLightButtonVariant.ghost,
             ),
           ],
@@ -177,7 +177,7 @@ class Step1 extends StatelessWidget {
 
         TaxLightButton(
           label: 'Skip for now',
-          onPressed: () {},
+          onPressed: () => controller.currentIndex.value = 2,
           variant: TaxLightButtonVariant.ghost,
         ),
       ],
@@ -255,7 +255,7 @@ class Step3 extends StatelessWidget {
 
         TaxLightButton(
           label: 'Skip for now',
-          onPressed: () {},
+          onPressed: () => controller.currentIndex.value = 4,
           variant: TaxLightButtonVariant.ghost,
         ),
       ],
@@ -373,7 +373,7 @@ class Step4 extends StatelessWidget {
 
           TaxLightButton(
             label: 'Skip for now',
-            onPressed: () {},
+            onPressed: () => controller.currentIndex.value = 5,
             variant: TaxLightButtonVariant.ghost,
           ),
         ],

@@ -15,6 +15,8 @@ class WelcomeView extends StatelessWidget implements WelcomeViewContract {
   @override
   Widget build(BuildContext context) {
     return TaxLightScaffold(
+      showTopActions: true,
+      noHeader: true,
       body: Column(
         children: [
            171.verticalSpace,
